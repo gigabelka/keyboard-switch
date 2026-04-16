@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <Platforms>x64</Platforms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <AssemblyName>KeyboardSwitch</AssemblyName>
+    <RootNamespace>KeyboardSwitch</RootNamespace>
+    <Version>1.0.0</Version>
+    <Company>KeyboardSwitch</Company>
+    <Product>KeyboardSwitch</Product>
+  </PropertyGroup>
+
+  <!-- alert.wav is generated at first run next to the executable (WavGenerator). -->
+  <!-- tray.ico is optional; if the file is dropped into Resources\ it will be used. -->
+  <ItemGroup>
+    <Resource Include="Resources\tray.ico" Condition="Exists('Resources\tray.ico')" />
+  </ItemGroup>
+
+</Project>

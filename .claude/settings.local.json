@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(dotnet --list-sdks)",
+      "Bash(dotnet --version)",
+      "Bash(dotnet --list-runtimes)",
+      "Bash(dotnet build *)"
+    ]
+  }
+}
