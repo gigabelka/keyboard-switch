@@ -1,0 +1,117 @@
+## .NET build output
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.swp
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Pp]ublish/
+[Pp]ublishScripts/
+
+## NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+## ReSharper / dotCover / NCrunch
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+*.dotCover
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+## Test results / coverage
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+## Roslyn cache / Rider caches
+*.ide/
+.vs/
+*.cache
+
+## Benchmark / profiler
+BenchmarkDotNet.Artifacts/
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+## ASP.NET / MSBuild
+Generated_Code/
+_Chutzpah*
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+## Windows / OS
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+## Secrets / local config
+*.pfx
+*.publishsettings
+appsettings.*.local.json
+secrets.json
+*.env
+.env.*
+
+## Claude local settings
+.claude/settings.local.json
