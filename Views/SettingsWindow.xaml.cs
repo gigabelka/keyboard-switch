@@ -1,10 +1,12 @@
 using System;
 using System.Windows;
+using System.Windows.Input;
 using KeyboardSwitch.ViewModels;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
 using Key = System.Windows.Input.Key;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MouseButtonEventArgs = System.Windows.Input.MouseButtonEventArgs;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace KeyboardSwitch.Views;
@@ -18,6 +20,12 @@ public partial class SettingsWindow : Window
         InitializeComponent();
         _vm = vm;
         DataContext = vm;
+    }
+
+    private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton == MouseButton.Left)
+            DragMove();
     }
 
     private void OnHide(object sender, RoutedEventArgs e) => Hide();

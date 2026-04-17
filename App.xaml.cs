@@ -35,8 +35,6 @@ public partial class App : System.Windows.Application
 
         try
         {
-            EnsureBundledAlertWav();
-
             _settings = new JsonSettingsService();
             _sound = new SoundService(_settings);
             _autoStart = new RegistryAutoStartService();
@@ -79,13 +77,6 @@ public partial class App : System.Windows.Application
     private static string SettingsFilePath() => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
         "KeyboardSwitch", "settings.json");
-
-    private static void EnsureBundledAlertWav()
-    {
-        var path = Path.Combine(AppContext.BaseDirectory, "Resources", "alert.wav");
-        try { WavGenerator.EnsureAlertWav(path); }
-        catch { /* non-fatal: SoundService will fall back to SystemSounds */ }
-    }
 
     private void ShowSettingsWindow()
     {

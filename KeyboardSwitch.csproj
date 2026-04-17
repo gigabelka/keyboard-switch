@@ -19,9 +19,13 @@
     <Product>KeyboardSwitch</Product>
   </PropertyGroup>
 
-  <!-- alert.wav is generated at first run next to the executable (WavGenerator). -->
+  <!-- alert.wav is bundled from Sounds\ and copied to Resources\alert.wav next to the exe. -->
   <!-- tray.ico is optional; if the file is dropped into Resources\ it will be used. -->
   <ItemGroup>
+    <Content Include="Sounds\alert.wav">
+      <Link>Resources\alert.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\tray.ico" Condition="Exists('Resources\tray.ico')" />
   </ItemGroup>
 

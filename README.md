@@ -25,28 +25,29 @@ dotnet build -c Release
 ## Запуск
 
 ```
-dotnet run --project src/KeyboardSwitch
+dotnet run
 ```
 
 или просто запустить `KeyboardSwitch.exe`. При первом запуске — откроется окно настроек. Дальше программа живёт в трее; клик по иконке → окно настроек.
 
 Параметры командной строки:
+
 - `--tray` — стартовать сразу в трее, без окна. Используется автозагрузкой.
 
 ## Настройки
 
 Хранятся в `%AppData%\KeyboardSwitch\settings.json`:
 
-| Поле | Описание | По умолчанию |
-|---|---|---|
-| `enabled` | Включён ли мониторинг | `true` |
-| `playSound` | Играть звуковой сигнал | `true` |
-| `autoSwitch` | Авто-исправлять слово | `false` |
-| `autoStart` | Запуск с Windows (реестр) | `false` |
-| `customSoundPath` | Путь к своему WAV | `null` |
-| `minWordLength` | Минимальная длина слова для анализа | `4` |
-| `sensitivity` | `Low` / `Medium` / `High` | `Medium` |
-| `ignoredProcesses` | Имена exe, где не отслеживать | keepass, 1password, bitwarden, lastpass |
+| Поле               | Описание                            | По умолчанию                            |
+| ------------------ | ----------------------------------- | --------------------------------------- |
+| `enabled`          | Включён ли мониторинг               | `true`                                  |
+| `playSound`        | Играть звуковой сигнал              | `true`                                  |
+| `autoSwitch`       | Авто-исправлять слово               | `false`                                 |
+| `autoStart`        | Запуск с Windows (реестр)           | `false`                                 |
+| `customSoundPath`  | Путь к своему WAV                   | `null`                                  |
+| `minWordLength`    | Минимальная длина слова для анализа | `4`                                     |
+| `sensitivity`      | `Low` / `Medium` / `High`           | `Medium`                                |
+| `ignoredProcesses` | Имена exe, где не отслеживать       | keepass, 1password, bitwarden, lastpass |
 
 Автозагрузка пишется в `HKCU\Software\Microsoft\Windows\CurrentVersion\Run\KeyboardSwitch`.
 
