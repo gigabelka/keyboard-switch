@@ -8,8 +8,8 @@ Windows не имеет встроенной детекции «неверной
 
 1. Глобальный хук `WH_KEYBOARD_LL` (user32) читает все нажатия системы.
 2. VK-коды переводятся в символы через `ToUnicodeEx` с активной раскладкой.
-3. [WordBuffer](src/KeyboardSwitch/Services/WordBuffer.cs) собирает текущее слово до разделителя (пробел, Enter, Tab, знаки, навигация).
-4. [TrigramLayoutDetector](src/KeyboardSwitch/Services/LayoutDetector.cs) сравнивает log-likelihood слова под моделью текущего языка и под моделью слова, «транслитерированного» в другую раскладку через [LayoutMap](src/KeyboardSwitch/Interop/LayoutMap.cs) (ЙЦУКЕН ↔ QWERTY).
+3. [WordBuffer](Services/WordBuffer.cs) собирает текущее слово до разделителя (пробел, Enter, Tab, знаки, навигация).
+4. [TrigramLayoutDetector](Services/LayoutDetector.cs) сравнивает log-likelihood слова под моделью текущего языка и под моделью слова, «транслитерированного» в другую раскладку через [LayoutMap](Interop/LayoutMap.cs) (ЙЦУКЕН ↔ QWERTY).
 5. Если «чужая» раскладка даёт заметно более высокий score — срабатывает сигнал, а при включённой опции — авто-исправление через `SendInput` (Backspace×N → смена раскладки → набор через Unicode-ввод).
 
 ## Сборка
@@ -20,7 +20,7 @@ Windows не имеет встроенной детекции «неверной
 dotnet build -c Release
 ```
 
-Вывод: [src/KeyboardSwitch/bin/x64/Release/net8.0-windows/KeyboardSwitch.exe](src/KeyboardSwitch/bin/x64/Release/net8.0-windows/).
+Вывод: [bin/x64/Release/net8.0-windows/KeyboardSwitch.exe](bin/x64/Release/net8.0-windows/).
 
 ## Запуск
 
@@ -58,26 +58,26 @@ dotnet publish -c Release -r win-x64 --self-contained true \
 
 ## Звук
 
-При первом запуске рядом с exe создаётся `Resources\alert.wav` (короткий двух-тональный сигнал, генерируется [WavGenerator](src/KeyboardSwitch/Services/WavGenerator.cs)). Файл можно заменить своим, либо указать путь в настройках. Если WAV недоступен — используется `SystemSounds.Exclamation` как fallback.
+Файл `Resources\alert.wav` поставляется вместе с приложением и копируется рядом с exe при сборке. Его можно заменить своим, либо указать путь в настройках (`customSoundPath`). Если WAV недоступен — используется `SystemSounds.Exclamation` как fallback. [SoundService](Services/SoundService.cs) ищет звук в порядке: `customSoundPath` → `Resources\alert.wav` рядом с exe → `alert.wav` рядом с exe → системный звук.
 
 ## Известные ограничения
 
 - Окна с повышенными правами (UAC) и некоторые игры не принимают ввод от `SendInput` / не видят наш хук. Это ограничение Windows.
-- Триграммная модель обучена на маленьком встроенном корпусе (~200 слов на язык). Для большей точности можно сгенерировать полноценные частотные таблицы и подменить модель в [LayoutDetector](src/KeyboardSwitch/Services/LayoutDetector.cs).
-- Поддерживаются только раскладки EN (0x0409) и RU (0x0419). Для других языков нужно расширить [LayoutMap](src/KeyboardSwitch/Interop/LayoutMap.cs) и добавить корпус.
+- Триграммная модель обучена на маленьком встроенном корпусе (~200 слов на язык). Для большей точности можно сгенерировать полноценные частотные таблицы и подменить модель в [LayoutDetector](Services/LayoutDetector.cs).
+- Поддерживаются только раскладки EN (0x0409) и RU (0x0419). Для других языков нужно расширить [LayoutMap](Interop/LayoutMap.cs) и добавить корпус.
 - Пароли: по умолчанию игнорируются процессы популярных менеджеров паролей. В обычных текстовых полях (например, поле «Пароль» в браузере) Windows не сообщает, что это пароль — ввод идёт в буфер как обычный текст. Используйте `ignoredProcesses` для чувствительных приложений.
 
 ## Структура
 
 ```
-src/KeyboardSwitch/
+./
 ├── Interop/       WH_KEYBOARD_LL, LayoutMap (RU↔EN), P/Invoke
 ├── Services/      SettingsService, LayoutService, WordBuffer,
 │                  BigramModel, LayoutDetector, SoundService,
 │                  AutoStartService, AutoSwitchService,
-│                  InputMonitor, SingleInstanceGuard, WavGenerator
+│                  InputMonitor, SingleInstanceGuard
 ├── Models/        AppSettings
 ├── ViewModels/    SettingsViewModel
 ├── Views/         App.xaml, SettingsWindow, TrayIcon (WinForms NotifyIcon)
-└── Resources/     (tray.ico — опционально; alert.wav — генерируется на 1-м запуске)
+└── Resources/     alert.wav (bundled); tray.ico — опционально
 ```

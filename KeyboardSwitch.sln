@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardSwitch", "src\KeyboardSwitch\KeyboardSwitch.csproj", "{2B7C5E60-61C4-4D3B-B9F0-1A7A4B6E5D91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardSwitch", "KeyboardSwitch.csproj", "{2B7C5E60-61C4-4D3B-B9F0-1A7A4B6E5D91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
