@@ -19,11 +19,10 @@
     <Product>KeyboardSwitch</Product>
   </PropertyGroup>
 
-  <!-- alert.wav is bundled from Sounds\ and copied to Resources\alert.wav next to the exe. -->
+  <!-- alert.wav is shipped from Resources\ and copied next to the exe. -->
   <!-- tray.ico is optional; if the file is dropped into Resources\ it will be used. -->
   <ItemGroup>
-    <Content Include="Sounds\alert.wav">
-      <Link>Resources\alert.wav</Link>
+    <Content Include="Resources\alert.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\tray.ico" Condition="Exists('Resources\tray.ico')" />

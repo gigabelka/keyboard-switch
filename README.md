@@ -24,8 +24,13 @@ dotnet build -c Release
 
 ## Запуск
 
-```
+```bash
+# Разработка
 dotnet run
+
+# Публикация в единый .exe без зависимостей
+dotnet publish -c Release -r win-x64 --self-contained true \
+  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 ```
 
 или просто запустить `KeyboardSwitch.exe`. При первом запуске — откроется окно настроек. Дальше программа живёт в трее; клик по иконке → окно настроек.
